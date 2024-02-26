@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Encryption Centre</title>
+    <style>
+        /* Styles for the existing form */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+            color: #4CAF50;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333333;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        label {
+            color: #4CAF50;
+        }
+
+        input[type="text"] {
+            background-color: #ffffff;
+            border: 1px solid #4CAF50;
+            height: 40px;
+            width: 400px;
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            height: 40px;
+            width: 100px;
+            color: #ffffff;
+            background-color: #4CAF50;
+            border: none;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Styles for the additional content and sidebar */
+        .content-container {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .content {
+            margin: 0 auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h3 {
+            color: #4CAF50;
+            margin-top: 0;
+        }
+
+        .slide-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+
+        .slide-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sidebar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Data Encryption Centre</h2>
+    <h3>Enter the Text You Want to Send</h3>
+    <form action="/send" method="post">
+        <label for="message">Message:</label><br><br>
+        <input type="text" id="message" name="Welcome to The world of privacy" placeholder="Enter your Text here"><br><br>
+        <input type="submit" value="Next">
+    </form>
+
+    <div class="content-container">
+        <div class="content">
+            <h3>How your data is being misused in day-to-day life by everywhere on the web</h3>
+            <p class="slide-in">Data misuse is a prevalent issue in today's digital age. With the increasing reliance on technology and the internet, our personal data is constantly being collected, stored, and used by various entities.</p>
+            <p class="slide-in">Companies track our online activities, analyze our preferences, and use this information for targeted advertising or even selling it to third parties. Our data is also vulnerable to security breaches, where cybercriminals can steal and exploit it for malicious purposes.</p>
+            <p class="slide-in">Moreover, data brokers and marketers aggregate and combine our data from multiple sources to create comprehensive profiles, enabling them to influence our decisions and manipulate our behaviors.</p>
+            <p class="slide-in">To protect your data, it is essential to be vigilant and take necessary precautions. Be mindful of the information you share online, regularly review privacy settings, use strong and unique passwords, and consider using encryption and secure communication channels.</p>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <p>Please protect your data</p>
+    </div>
+
+    <script>
+        const slideInElements = document.querySelectorAll(".slide-in");
+
+        function showSlideInElements() {
+            slideInElements.forEach((element) => {
+                if (element.getBoundingClientRect().top < window.innerHeight) {
+                    element.classList.add("active");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", showSlideInElements);
+        window.addEventListener("load", showSlideInElements);
+
+        const sidebar = document.querySelector(".sidebar");
+        const slides = [
+            "Please protect your data",
+            "Data Privacy",
+            "Understand Data Misuse",
+            "Safeguarding Your Personal Information",
+            "Taking Control of Your Data"
+        ];
+        let currentSlide = 0;
+
+        function changeSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            sidebar.textContent = slides[currentSlide];
+        }
+
+        setInterval(changeSlide, 3000);
+    </script>
+</body>
+</html>

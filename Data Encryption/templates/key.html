@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Encryption Centre</title>
+    <style>
+        /* Styles for the existing content */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+            color: #4CAF50;
+        }
+
+        /* Styles for the additional content */
+        .content-container {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .button-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 50px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .button-container form {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .button-container input[type="submit"] {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .content-container {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .content {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            color: #333333;
+        }
+
+        .content-container {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .content {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            color: #333333;
+        }
+
+        .content {
+            margin: 0 auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h3 {
+            color: #4CAF50;
+            margin-top: 0;
+        }
+
+        .slide-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+
+        .slide-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        /* Styles for the cow box */
+        #cow-box {
+            width: 500px;
+            height: 100px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h2>The key is {{ key }}</h2><br><br>
+    <div class="button-container">
+        <form method="post" action="{{ url_for('qrcode1') }}">
+            <input type="submit" value="Click here to view your QR Code">
+        </form>
+    </div>
+
+    <div class="content-container">
+        <div class="content">
+            <h3>How Encryption changed the world</h3>
+            <p class="slide-in">Encryption has revolutionized the way we protect and secure information in the modern world. It provides a method of encoding data so that only authorized parties can access and decipher it.</p>
+            <p class="slide-in">With encryption, sensitive information such as personal data, financial details, and confidential communications can be transmitted and stored securely, mitigating the risk of unauthorized access and data breaches.</p>
+            <p class="slide-in">Furthermore, encryption has played a vital role in enabling secure online transactions, communication, and data sharing. It has bolstered the growth of e-commerce, online banking, and cloud computing, fostering trust and confidence in digital interactions.</p>
+            <p class="slide-in">In the realm of cybersecurity, encryption has become an essential tool to safeguard critical infrastructure, protect sensitive government information, and defend against cyber threats. It has significantly contributed to the overall resilience and security of digital systems.</p>
+            <p class="slide-in">As technology continues to advance, encryption remains an indispensable aspect of protecting privacy, ensuring data integrity, and preserving the confidentiality of information in our interconnected world.</p>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <p id="slide-text"></p>        
+    </div>
+
+
+    <script>
+        const slideInElements = document.querySelectorAll(".slide-in");
+        const sidebar = document.querySelector(".sidebar");
+        const slides = [
+            "Encryption is the Future",
+            "Data Privacy",
+            "Don't be fooled",
+            "Your Personal Information is yours",
+            "Your Data - Your data NOT FOR SALE"
+        ];
+        let currentSlide = 0;
+
+        function changeSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            sidebar.textContent = slides[currentSlide];
+        }
+
+        function showSlideInElements() {
+            slideInElements.forEach((element) => {
+                if (element.getBoundingClientRect().top < window.innerHeight) {
+                    element.classList.add("active");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", showSlideInElements);
+        window.addEventListener("load", showSlideInElements);
+        setInterval(changeSlide, 3000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Encryption Centre</title>
+    <style>
+        /* Styles for the existing content */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+            color: #4CAF50;
+        }
+
+        /* Styles for the additional content */
+        .content-container {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .content {
+            margin: 0 auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h3 {
+            color: #4CAF50;
+            margin-top: 0;
+        }
+
+        .slide-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+
+        .slide-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>The message is sent </h2><br><br>
+
+    <div class="content-container">
+        <div class="content">
+            <h3>How message is sent using the internet</h3>
+            <p class="slide-in">When you send a message over the internet, it goes through several stages before reaching its destination.</p>
+            <p class="slide-in">First, the message is converted into digital data, broken down into packets, and then transmitted across the network.</p>
+            <p class="slide-in">The packets travel through routers and switches, which determine the optimal path for the data to reach the recipient.</p>
+            <p class="slide-in">At each hop, the packets are inspected and forwarded based on the destination address. This process continues until all packets arrive at the destination.</p>
+            <p class="slide-in">During transit, the data can be intercepted by various entities, such as hackers, spammers, or government agencies. This highlights the importance of encryption and other security measures to protect the privacy and integrity of the message.</p>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <p id="slide-text"></p>
+    </div>
+
+    <script>
+        const slideInElements = document.querySelectorAll(".slide-in");
+        const sidebar = document.querySelector(".sidebar");
+        const slides = [
+            "Who can see your data when it is in transit?",
+            "Protecting your messages with encryption",
+            "Securing your communication",
+            "Mitigating the risks of interception",
+            "Importance of data privacy during transmission"
+        ];
+        let currentSlide = 0;
+
+        function changeSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            sidebar.textContent = slides[currentSlide];
+        }
+
+        function showSlideInElements() {
+            slideInElements.forEach((element) => {
+                if (element.getBoundingClientRect().top < window.innerHeight) {
+                    element.classList.add("active");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", showSlideInElements);
+        window.addEventListener("load", showSlideInElements);
+        setInterval(changeSlide, 3000);
+    </script>
+</body>
+</html>

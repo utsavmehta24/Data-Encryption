@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333333;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 30px;
+            color: #666666;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 50px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .button-container form {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .button-container input[type="submit"] {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .content-container {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .content {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            color: #333333;
+        }
+
+        .sidebar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .sidebar:hover {
+            background-color: #45a049;
+        }
+
+        .slide-in {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .slide-in.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <h2 style="transition: color 0.3s ease-in-out;">Select the task you want to perform:</h2>
+    <h3 style="transition: color 0.3s ease-in-out;">Select from the following options:</h3>
+    <div class="button-container">
+        <form method="post" action="{{ url_for('key') }}">
+            <input type="submit" value="Key of your Encryption">
+        </form>
+        <form method="post" action="{{ url_for('encrypted_message') }}">
+            <input type="submit" value="The encrypted message">
+        </form>
+        <form method="post" action="{{ url_for('decrypted_message') }}">
+            <input type="submit" value="Original Message">
+        </form>
+        <form method="post" action="{{ url_for('send_message') }}">
+            <input type="submit" value="Send Your encrypted Message">
+        </form>
+        <form method="post" action="{{ url_for('omessage') }}">
+            <input type="submit" value="Send Your orginal message">
+        </form>
+    </div>
+
+    <div class="content-container">
+        <div class="content">
+            <h3>Did you know??</h3>
+            <p class="slide-in">How Privacy breach can cause serious harm to you and your loved ones!</p>
+            <p class="slide-in">Privacy breaches can have severe consequences for individuals and their families. When personal information is compromised, it can lead to identity theft, financial loss, and emotional distress. Cybercriminals may use stolen data to impersonate individuals, access their accounts, or commit fraudulent activities.</p>
+            <p class="slide-in">Furthermore, privacy breaches can also result in reputational damage, affecting personal and professional relationships. The leaking of sensitive information can have long-lasting implications and erode trust among individuals and organizations.</p>
+            <p class="slide-in">It is crucial to prioritize online privacy and take necessary measures to protect personal information. This includes using strong passwords, enabling two-factor authentication, being cautious while sharing sensitive data, and staying updated with security practices.</p>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <p>Privacy Breaches and You</p>
+    </div>
+
+    <script>
+        const slides = [
+            "Privacy Breaches and You",
+            "The Importance of Data Protection",
+            "Securing Your Online Privacy",
+            "Privacy Best Practices",
+            "Protecting Your Digital Identity"
+        ];
+
+        let currentSlide = 0;
+        const sidebar = document.querySelector(".sidebar");
+
+        function changeSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            sidebar.textContent = slides[currentSlide];
+        }
+
+        setInterval(changeSlide, 3000);
+
+        const slideInElements = document.querySelectorAll(".slide-in");
+
+        function showSlideInElements() {
+            slideInElements.forEach((element) => {
+                if (element.getBoundingClientRect().top < window.innerHeight) {
+                    element.classList.add("active");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", showSlideInElements);
+        window.addEventListener("load", showSlideInElements);
+    </script>
+</body>
+</html>
